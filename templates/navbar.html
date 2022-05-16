@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div>
+            <ul class="navbar-nav">
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/manageuser/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/manageuser/create-post">Post</a>
+                </li> -->
+            </ul>
+        </div>
+        <div>
+            <ul class="navbar-nav">
+                <li class="nav-item text-white">
+                    {% if user.is_authenticated %}
+                        Logged in as : {{ user.username }} Last Login: {{ user.last_login }} <a href="../logout/">Logout</a>
+                    {% else %}
+                    <a class="nav-link" href="safemanager/manageuser/login">Login</a>
+                    {% endif %} 
+                  
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

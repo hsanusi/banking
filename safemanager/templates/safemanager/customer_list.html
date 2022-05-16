@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Customer List</h1>
+
+<div> 
+    <div>
+        <div>
+            <table border="1">
+                <tr>
+                    <th>
+                        CUSTOMER NAME
+                    </th>
+                    <th>
+                        HOME ADDRESS
+                    </th>
+                    <th>
+                        TELEPHONE
+                    </th>
+                    <th>
+                        IS ACTIVE
+                    </th>
+                    <th>
+                        SEX
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                </tr>
+                {% for customer in customers %}
+                <tr>
+                    <td>
+                        {{customer.surname|upper}} {{customer.first_name}}
+                    </td>
+                    <td>
+                        {{customer.home_address | title}}
+                    </td>
+                    <td>
+                        {{customer.phone}}
+                    </td>
+                    <td>
+                        {% if customer.is_active %}
+                            YES
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if customer.sex == 'M' %}
+                            MALE
+                        {% elif customer.sex == 'F' %}
+                            FEMALE
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/safemanager/customer/{{customer.id}}">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+ 
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

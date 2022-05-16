@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Customer_Group(models.Model):
     name = models.CharField(max_length=150, null=False)
@@ -24,10 +25,15 @@ class Customer(models.Model):
         ('Elder', 'Elder'),
         ('Oba', 'Oba'),
     )
-    def _get_customer_id(self):
-        custom = "00000" + self.id 
-        return custom
-    customer_id = property(_get_customer_id)
+
+    MARITAL_STATUS = (
+        ('Single', 'Single'),
+        ('Maried', 'Married'),
+        ('Divorced', 'Divorced'),
+        ('Widow', 'Widow'), 
+    )
+    
+    customer_id = models.CharField(max_length=4,null=True)
     group = models.ForeignKey(Customer_Group, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=6, choices=SHORT_TITLE)
     surname = models.CharField(max_length=50, null=False)
@@ -37,10 +43,15 @@ class Customer(models.Model):
     date_of_birth = models.DateField()
     home_address = models.TextField()
     phone = models.CharField(max_length=15)
+    occupation = models.CharField(max_length=50,null=True)
+    office_address = models.TextField(null=True)
     email = models.EmailField(max_length=50,null=True)
+    marital_status = models.CharField(max_length=15, choices=MARITAL_STATUS, default='Single')
     status = models.BooleanField(default=True)
     next_of_kin = models.CharField(max_length=50, null=True)
     next_of_kin_phone = models.CharField(max_length=50, null=True)
+    registered_by = models.ForeignKey(User,on_delete=models.SET_NULL, null=True)
+    passport = models.ImageField(upload_to='images/', null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

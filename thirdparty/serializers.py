@@ -4,7 +4,7 @@ from safemanager.models import Customer,Customer_Group
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
-        fields = ('id',"title","surname","first_name","other_name","sex","date_of_birth","home_address","phone","status","date_joined")
+        fields = '__all__'
         
 
 class CustomerGroupSerializer(serializers.ModelSerializer):

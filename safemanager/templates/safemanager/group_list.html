@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Customer List</h1>
+<div> 
+    <div>
+        <div>
+            <table border="1">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Maximum Customer
+                    </th>
+                    <th>
+                        Creation Date
+                    </th>
+                    <th>
+                        Created By
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                </tr>
+                {% for group in groups %}
+                <tr>
+                    <td>
+                        {{group.name|upper}}
+                    </td>
+                    <td>
+                        {{group.address | title}}
+                    </td>
+                    <td>
+                        {{group.maximum_customer_allowed}}
+                    </td>
+                    <td>
+                        {{group.creation_date}}
+                    </td>
+                    <td>
+                        {{ group.created_by}}
+                        
+                    </td>
+                    <td>
+                        {{ group.status }}
+                        
+                    </td>
+                    <td>
+                        <a href="/safemanager/group/{{group.id}}">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+ 
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

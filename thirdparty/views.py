@@ -1,11 +1,8 @@
-from urllib.request import Request
-from django.shortcuts import render
 from .serializers import CustomerSerializer, CustomerGroupSerializer
 from safemanager.models import Customer, Customer_Group
 from rest_framework import viewsets,generics,status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.http import JsonResponse
 
 class CustomerView(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
@@ -14,6 +11,7 @@ class CustomerView(viewsets.ModelViewSet):
 class CustomerGroupView(viewsets.ModelViewSet):
     serializer_class = CustomerGroupSerializer
     queryset = Customer_Group.objects.all().order_by("id")
+
 
 @api_view(['GET'])
 def getRoutes(request):

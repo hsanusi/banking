@@ -48,11 +48,16 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'usermanagement.apps.UsermanagementConfig',
+    'django_tables2',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"), 
+]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

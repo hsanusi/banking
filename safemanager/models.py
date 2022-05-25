@@ -5,7 +5,9 @@ class Customer_Group(models.Model):
     name = models.CharField(max_length=150, null=False)
     address = models.TextField(max_length=50, null=False)
     maximum_customer_allowed = models.IntegerField()
-    logo = models.CharField(max_length=50, null=False)
+    logo = models.ImageField(upload_to='logos/', null=True)
+    created_by = models.ForeignKey(User,on_delete=models.SET_NULL, null=True)
+    creation_date = models.DateTimeField(auto_now_add=True,null=True)
     status = models.BooleanField(default=True)
 
     def __str__(self):
@@ -28,7 +30,7 @@ class Customer(models.Model):
 
     MARITAL_STATUS = (
         ('Single', 'Single'),
-        ('Maried', 'Married'),
+        ('Married', 'Married'),
         ('Divorced', 'Divorced'),
         ('Widow', 'Widow'), 
     )
@@ -56,3 +58,4 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.surname
+

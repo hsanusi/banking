@@ -2,7 +2,6 @@
 
 {% block content %}
 <h1>Customer List</h1>
-
 <div> 
     <div>
         <div>
@@ -39,9 +38,7 @@
                         {{customer.phone}}
                     </td>
                     <td>
-                        {% if customer.is_active %}
-                            YES
-                        {% endif %}
+                        {{customer.status}}
                     </td>
                     <td>
                         {% if customer.sex == 'M' %}
